@@ -9,9 +9,11 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.gvendas.gestaovendas.entidades.Categoria;
+import com.gvendas.gestaovendas.excecao.RegraNegocioException;
 import com.gvendas.gestaovendas.repositorio.CategoriaRepositorio;
 
-import ch.qos.logback.core.joran.util.beans.BeanUtil;
+import ch.qos.logback.core.joran.util.beans.BeanUtil;import io.swagger.annotations.ApiOperation;
+import net.bytebuddy.implementation.bytecode.Throw;
 
 @Service
 public class CategoriaServico {
@@ -28,6 +30,7 @@ public class CategoriaServico {
 	}
 	
 	public Categoria salvar (Categoria categoria) {
+		validarCategoriaDuplicada(categoria);
 		return categoriaRepositorio.save(categoria);
 	}
 	
@@ -37,6 +40,7 @@ public class CategoriaServico {
 	
 	public Categoria atualizar (Long codigo, Categoria categoria) {
 		Categoria categoriaSalvar = validarCategoriaExiste(codigo);
+		validarCategoriaDuplicada(categoria);
 		BeanUtils.copyProperties(categoria, categoriaSalvar,"codigo");
 		return categoriaRepositorio.save(categoriaSalvar);
 	}
@@ -49,5 +53,13 @@ public class CategoriaServico {
 		}
 		
 		return categoria.get();
+	}
+	
+	private void validarCategoriaDuplicada(Categoria categoria) {
+		Categoria categoriaEncontrada = categoriaRepositorio.findByNome(categoria.getNome());
+		
+		if(categoriaEncontrada != null && categoriaEncontrada.getCodigo() != categoria.getCodigo()) {
+			throw new RegraNegocioException(String.format(" A categoria %s já está cadastrada", categoria.getNome().toUpperCase() ));
+		}
 	}
 }
