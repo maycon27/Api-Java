@@ -12,8 +12,6 @@ import com.gvendas.gestaovendas.entidades.Categoria;
 import com.gvendas.gestaovendas.excecao.RegraNegocioException;
 import com.gvendas.gestaovendas.repositorio.CategoriaRepositorio;
 
-import ch.qos.logback.core.joran.util.beans.BeanUtil;import io.swagger.annotations.ApiOperation;
-import net.bytebuddy.implementation.bytecode.Throw;
 
 @Service
 public class CategoriaServico {
