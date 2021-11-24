@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class GestaoVendasTratamentoExcecao extends ResponseEntityExceptionHandler {
 	
 	private static final String CONSTANT_VALIDATION_NOT_BLANK = "NotBlank";
+	private static final String CONSTANT_VALIDATION_NOT_NULL = "NotNull";
 	private static final String CONSTANT_VALIDATION_LENGTH = "Length";
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
@@ -72,6 +73,9 @@ public class GestaoVendasTratamentoExcecao extends ResponseEntityExceptionHandle
 
 	private String tratarMensagemDeErroParaUsuario(FieldError fieldError) {
 		if(fieldError.getCode().equals(CONSTANT_VALIDATION_NOT_BLANK)) {
+			return fieldError.getDefaultMessage().concat(" é obrigatório.");
+		}
+		if(fieldError.getCode().equals(CONSTANT_VALIDATION_NOT_NULL)) {
 			return fieldError.getDefaultMessage().concat(" é obrigatório.");
 		}
 		if(fieldError.getCode().equals(CONSTANT_VALIDATION_LENGTH)) {
