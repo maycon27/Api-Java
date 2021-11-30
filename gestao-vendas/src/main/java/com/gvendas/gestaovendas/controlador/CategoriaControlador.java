@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,6 +40,7 @@ public class CategoriaControlador {
 	
 	@ApiOperation(value = "Listar",nickname = "listarTodas")
 	@GetMapping
+	@CrossOrigin(origins = "http://localhost:4200")
 	public List<CategoriaResponseDTO> listarTodas(){
 		 return categoriaServico.listarTodas().stream().map(categoria -> CategoriaResponseDTO.converterParaCategoriaDTO(categoria))
 				 .collect(Collectors.toList());
@@ -46,6 +48,7 @@ public class CategoriaControlador {
 	
 	@ApiOperation(value = "Listar por código",nickname = "buscarPorId")
 	@GetMapping("/{codigo}")
+	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<CategoriaResponseDTO> buscarPorId(@PathVariable Long codigo){
 		Optional<Categoria> categoria = categoriaServico.buscarPorCodigo(codigo);
 		return categoria.isPresent() ? ResponseEntity.ok(CategoriaResponseDTO.converterParaCategoriaDTO(categoria.get())) : ResponseEntity.notFound().build();
@@ -53,6 +56,7 @@ public class CategoriaControlador {
 	
 	@ApiOperation(value = "Salvar",nickname = "salvarCategoria")
 	@PostMapping
+	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<CategoriaResponseDTO> salvar(@Valid @RequestBody CategoriaRequestDTO categoriaDto){
 		Categoria categoriaSalva = categoriaServico.salvar(categoriaDto.converterParaEntidade());
 		return ResponseEntity.status(HttpStatus.CREATED).body(CategoriaResponseDTO.converterParaCategoriaDTO(categoriaSalva));
@@ -60,6 +64,7 @@ public class CategoriaControlador {
 	
 	@ApiOperation(value = "Atualizar",nickname = "atualizarCategoria")
 	@PutMapping("/{codigo}")
+	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<CategoriaResponseDTO> atualizar (@PathVariable Long codigo, @Valid @RequestBody CategoriaRequestDTO categoriaDto){
 		Categoria categoriaAtualizada = categoriaServico.atualizar(codigo, categoriaDto.converterParaEntidade(codigo));
 		return ResponseEntity.ok(CategoriaResponseDTO.converterParaCategoriaDTO(categoriaAtualizada));
@@ -67,6 +72,7 @@ public class CategoriaControlador {
 	
 	@ApiOperation(value = "Deletar",nickname = "deleteCategoria")
 	@DeleteMapping("/{codigo}")
+	@CrossOrigin(origins = "http://localhost:4200")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long codigo) {
 		categoriaServico.deletar(codigo);
