@@ -38,7 +38,7 @@ public class ClienteControlador {
 
 	@ApiOperation(value = "Listar", nickname = "listarTodosClientes")
 	@GetMapping
-	@CrossOrigin(origins = "http://localhost:4200")
+	//@CrossOrigin(origins = "http://localhost:4200")
 	public List<ClienteResponseDTO> listarTodos() {
 		return clienteServico.listarTodos().stream().map(cliente -> ClienteResponseDTO.converterParaClienteDTO(cliente))
 				.collect(Collectors.toList());
@@ -46,7 +46,7 @@ public class ClienteControlador {
 
 	@ApiOperation(value = "Listar por código", nickname = "buscarClientePorId")
 	@GetMapping("/{codigo}")
-	@CrossOrigin(origins = "http://localhost:4200")
+	//@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<ClienteResponseDTO> buscarPorId(@PathVariable Long codigo) {
 		Optional<Cliente> cliente = clienteServico.buscarPorCodigo(codigo);
 		return cliente.isPresent() ? ResponseEntity.ok(ClienteResponseDTO.converterParaClienteDTO(cliente.get()))
@@ -55,7 +55,7 @@ public class ClienteControlador {
 
 	@ApiOperation(value = "Salvar", nickname = "salvarCliente")
 	@PostMapping
-	@CrossOrigin(origins = "http://localhost:4200")
+	//@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<ClienteResponseDTO> salvar(@Valid @RequestBody ClienteRequestDTO clienteDto) {
 		Cliente clienteSalvo = clienteServico.salvar(clienteDto.converterParaEntidade());
 		return ResponseEntity.status(HttpStatus.CREATED).body(ClienteResponseDTO.converterParaClienteDTO(clienteSalvo));
@@ -63,7 +63,7 @@ public class ClienteControlador {
 	
 	@ApiOperation(value = "Atualizar", nickname = "atualizarCliente")
 	@PutMapping("/{codigo}")
-	@CrossOrigin(origins = "http://localhost:4200")
+	//@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<ClienteResponseDTO> atualizar(@PathVariable Long codigo,@Valid @RequestBody ClienteRequestDTO clienteDto){
 		Cliente clienteAtualizado = clienteServico.atualizar(codigo, clienteDto.converterParaEntidade(codigo));
 		return ResponseEntity.ok(ClienteResponseDTO.converterParaClienteDTO(clienteAtualizado));
@@ -71,7 +71,7 @@ public class ClienteControlador {
 	
 	@ApiOperation(value = "Deletar", nickname = "deletarCliente")
 	@DeleteMapping("/{codigo}")
-	@CrossOrigin(origins = "http://localhost:4200")
+	//@CrossOrigin(origins = "http://localhost:4200")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletar(@PathVariable Long codigo) {
 		clienteServico.deletar(codigo);

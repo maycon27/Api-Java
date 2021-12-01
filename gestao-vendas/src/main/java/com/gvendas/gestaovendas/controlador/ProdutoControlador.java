@@ -38,7 +38,7 @@ public class ProdutoControlador {
 
 	@ApiOperation(value = "Listar",nickname = "ListarTodas")
 	@GetMapping
-	@CrossOrigin(origins = "http://localhost:4200")
+	//@CrossOrigin(origins = "http://localhost:4200")
 	public List<ProdutoResponseDTO> ListarTodas(@PathVariable Long codigoCategoria){
 		return produtoServico.listarTodos(codigoCategoria).stream()
 				.map(produto -> ProdutoResponseDTO.converterParaProdutoDTO(produto))
@@ -47,7 +47,7 @@ public class ProdutoControlador {
 	
 	@ApiOperation(value = "Listar por Código",nickname = "buscarPorCodigo")
 	@GetMapping("/{codigo}")
-	@CrossOrigin(origins = "http://localhost:4200")
+	//@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<ProdutoResponseDTO> buscarPorCodigo(@PathVariable Long codigoCategoria, 
 			@PathVariable Long codigo){
 		Optional<Produto> produto = produtoServico.buscarPorCodigo(codigo, codigoCategoria);
@@ -55,7 +55,7 @@ public class ProdutoControlador {
 	}
 	@ApiOperation(value = "Salvar", nickname = "salvarProduto")
 	@PostMapping
-	@CrossOrigin(origins = "http://localhost:4200")
+	//@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<ProdutoResponseDTO> salvar(@PathVariable Long codigoCategoria,@Valid @RequestBody ProdutoRequestDTO produto){
 		Produto produtosalvo = produtoServico.salvar(codigoCategoria,produto.converterParaEntidade(codigoCategoria));
 		return ResponseEntity.status(HttpStatus.CREATED).body(ProdutoResponseDTO.converterParaProdutoDTO(produtosalvo));
@@ -63,7 +63,7 @@ public class ProdutoControlador {
 	
 	@ApiOperation(value = "Atualizar", nickname = "atualizarProduto")
 	@PutMapping("/{codigoProduto}")
-	@CrossOrigin(origins = "http://localhost:4200")
+	//@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<ProdutoResponseDTO> atualizar(@PathVariable Long codigoCategoria, @PathVariable Long codigoProduto 
 			,@Valid @RequestBody ProdutoRequestDTO produto){
 		Produto produtoAtualizado = produtoServico.atualizar(codigoCategoria, codigoProduto, produto.converterParaEntidade(codigoCategoria, codigoProduto));
@@ -72,7 +72,7 @@ public class ProdutoControlador {
 	
 	@ApiOperation(value = "Deletar", nickname = "deletarProduto")
 	@DeleteMapping("/{codigoProduto}")
-	@CrossOrigin(origins = "http://localhost:4200")
+	//@CrossOrigin(origins = "http://localhost:4200")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletar(@PathVariable Long codigoCategoria, @PathVariable Long codigoProduto ) {
 		produtoServico.deletar(codigoCategoria,codigoProduto);
