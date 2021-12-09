@@ -47,7 +47,7 @@ public class ProdutoResponseDTO {
 	
 	public static ProdutoResponseDTO converterParaProdutoDTO(Produto produto) {
 		return new ProdutoResponseDTO(produto.getCodigo(), produto.getDescricao(), produto.getQuantidade(), 
-				produto.getPrecoCusto(), produto.getPrecoCusto(), produto.getDescricao(),
+				produto.getPrecoCusto(), produto.getPrecoVenda(), produto.getObservacao(),
 				CategoriaResponseDTO.converterParaCategoriaDTO(produto.getCategoria()));
 	}
 
