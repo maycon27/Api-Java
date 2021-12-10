@@ -30,7 +30,7 @@ import io.swagger.annotations.ApiOperation;
 
 @Api(tags = "Produto")
 @RestController
-@RequestMapping("/categoria{codigoCategoria}/produto")
+@RequestMapping("/produtos")
 public class ProdutoControlador {
 	
 	@Autowired
@@ -39,34 +39,34 @@ public class ProdutoControlador {
 	@ApiOperation(value = "Listar",nickname = "ListarTodas")
 	@GetMapping
 	//@CrossOrigin(origins = "http://localhost:4200")
-	public List<ProdutoResponseDTO> ListarTodas(@PathVariable Long codigoCategoria){
-		return produtoServico.listarTodos(codigoCategoria).stream()
+	public List<ProdutoResponseDTO> ListarTodas(){
+		return produtoServico.listarTodos().stream()
 				.map(produto -> ProdutoResponseDTO.converterParaProdutoDTO(produto))
 				.collect(Collectors.toList());
 	}
-	
 	@ApiOperation(value = "Listar por Código",nickname = "buscarPorCodigo")
 	@GetMapping("/{codigo}")
 	//@CrossOrigin(origins = "http://localhost:4200")
-	public ResponseEntity<ProdutoResponseDTO> buscarPorCodigo(@PathVariable Long codigoCategoria, 
+	public ResponseEntity<ProdutoResponseDTO> buscarPorCodigo(
 			@PathVariable Long codigo){
-		Optional<Produto> produto = produtoServico.buscarPorCodigo(codigo, codigoCategoria);
+		Optional<Produto> produto = produtoServico.buscarPorCodigo(codigo);
 		return produto.isPresent() ? ResponseEntity.ok(ProdutoResponseDTO.converterParaProdutoDTO(produto.get())) : ResponseEntity.notFound().build();
 	}
+	
 	@ApiOperation(value = "Salvar", nickname = "salvarProduto")
 	@PostMapping
 	//@CrossOrigin(origins = "http://localhost:4200")
-	public ResponseEntity<ProdutoResponseDTO> salvar(@PathVariable Long codigoCategoria,@Valid @RequestBody ProdutoRequestDTO produto){
-		Produto produtosalvo = produtoServico.salvar(codigoCategoria,produto.converterParaEntidade(codigoCategoria));
+	public ResponseEntity<ProdutoResponseDTO> salvar(@Valid @RequestBody ProdutoRequestDTO produto){
+		Produto produtosalvo = produtoServico.salvar(produto.converterParaEntidade());
 		return ResponseEntity.status(HttpStatus.CREATED).body(ProdutoResponseDTO.converterParaProdutoDTO(produtosalvo));
 	}
 	
 	@ApiOperation(value = "Atualizar", nickname = "atualizarProduto")
 	@PutMapping("/{codigoProduto}")
 	//@CrossOrigin(origins = "http://localhost:4200")
-	public ResponseEntity<ProdutoResponseDTO> atualizar(@PathVariable Long codigoCategoria, @PathVariable Long codigoProduto 
+	public ResponseEntity<ProdutoResponseDTO> atualizar( @PathVariable Long codigoProduto 
 			,@Valid @RequestBody ProdutoRequestDTO produto){
-		Produto produtoAtualizado = produtoServico.atualizar(codigoCategoria, codigoProduto, produto.converterParaEntidade(codigoCategoria, codigoProduto));
+		Produto produtoAtualizado = produtoServico.atualizar( codigoProduto, produto.converterParaEntidade(codigoProduto));
 		return ResponseEntity.ok(ProdutoResponseDTO.converterParaProdutoDTO(produtoAtualizado));
 	}
 	
@@ -74,7 +74,8 @@ public class ProdutoControlador {
 	@DeleteMapping("/{codigoProduto}")
 	//@CrossOrigin(origins = "http://localhost:4200")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deletar(@PathVariable Long codigoCategoria, @PathVariable Long codigoProduto ) {
-		produtoServico.deletar(codigoCategoria,codigoProduto);
+	public void deletar(@PathVariable Long codigoProduto ) {
+		produtoServico.deletar(codigoProduto);
 	}
+	
 }

@@ -2,6 +2,7 @@ package com.gvendas.gestaovendas.dto.produto;
 
 import java.math.BigDecimal;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -36,12 +37,17 @@ public class ProdutoRequestDTO {
 	@Length(max = 500, message = "Observação")
 	@ApiModelProperty(value = "Observação")
 	private String observacao;
+	
+	@NotNull(message = "Categoria")
+	@ApiModelProperty(value = "Categoria")
+	@Valid
+	private Long codigoCategoria;
 
-	public Produto converterParaEntidade(Long codigoCategoria) {
+	public Produto converterParaEntidade() {
 		return new Produto(descricao, quantidade, precoCusto, precoVenda, observacao, new Categoria(codigoCategoria));
 	}
 
-	public Produto converterParaEntidade(Long codigoCategoria, Long codigoProduto) {
+	public Produto converterParaEntidade(Long codigoProduto) {
 		return new Produto(codigoProduto,descricao, quantidade, precoCusto, precoVenda, observacao, new Categoria(codigoCategoria));
 	}
 	public String getDescricao() {
@@ -82,6 +88,14 @@ public class ProdutoRequestDTO {
 
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
+	}
+
+	public Long getCodigoCategoria() {
+		return codigoCategoria;
+	}
+
+	public void setCodigoCategoria(Long codigoCategoria) {
+		this.codigoCategoria = codigoCategoria;
 	}
 	
 	

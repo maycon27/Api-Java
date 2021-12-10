@@ -23,41 +23,43 @@ public class ProdutoServico {
 	@Autowired
 	private CategoriaServico categoriaServico;
 	
-	public List<Produto> listarTodos(Long codigoCategoria){
-		return produtoRepositorio.findByCategoriaCodigo(codigoCategoria);
+	public List<Produto> listarTodos(){
+		return produtoRepositorio.findAll();
+	}
+
+	public Optional<Produto> buscarPorCodigo(Long codigo){
+		return produtoRepositorio.findById(codigo);
 	}
 	
-	public Optional<Produto> buscarPorCodigo(Long codigo, Long codigoCategoria){
-		return produtoRepositorio.buscarPorCodigo(codigo, codigoCategoria);
-	}
-	
-	public Produto salvar(Long codigoCategoria,Produto produto) {
-		validarCategoriaDoProdutoExiste(codigoCategoria);
+	public Produto salvar(Produto produto) {
+		validarCategoriaDoProdutoExiste(produto.getCategoria().getCodigo());
 		validarProdutoDuplicado(produto);
 		return produtoRepositorio.save(produto);
 	}
 	
-	public Produto atualizar(Long codigoCategoria, Long codigoProduto,Produto produto) {
-		Produto produtoSalvar = validarProdutoExiste(codigoProduto, codigoCategoria);
-		validarCategoriaDoProdutoExiste(codigoCategoria);
+	public Produto atualizar(Long codigoProduto,Produto produto) {
+		Produto produtoSalvar = validarProdutoExiste(codigoProduto);
+		validarCategoriaDoProdutoExiste(produto.getCategoria().getCodigo());
 		validarProdutoDuplicado(produto);
 		BeanUtils.copyProperties(produto, produtoSalvar,"codigo");
 		return produtoRepositorio.save(produtoSalvar);
 	}
 	
-	private Produto validarProdutoExiste(Long codigo, Long codigoCategoria) {
-		Optional<Produto> produto = buscarPorCodigo(codigo, codigoCategoria);
+	public void deletar (Long codigoProduto) {
+		Produto produto = validarProdutoExiste(codigoProduto);
+		produtoRepositorio.delete(produto);
+	}
+
+	
+	private Produto validarProdutoExiste(Long codigo) {
+		Optional<Produto> produto = buscarPorCodigo(codigo);
 		if(produto.isEmpty()) {
 			throw new EmptyResultDataAccessException(1);
 		}
 		return produto.get();
 	}
 	
-	public void deletar (Long codigoCategoria, Long codigoProduto) {
-		Produto produto = validarProdutoExiste(codigoProduto, codigoCategoria);
-		produtoRepositorio.delete(produto);
-	}
-
+	
 	private void validarProdutoDuplicado(Produto produto) {
 		Optional<Produto> produtoPorDescricao = produtoRepositorio.findByCategoriaCodigoAndDescricao(produto.getCategoria().getCodigo(), produto.getDescricao());
 		if(produtoPorDescricao.isPresent() && produtoPorDescricao.get().getCodigo() != produto.getCodigo()) {
@@ -74,4 +76,5 @@ public class ProdutoServico {
 			throw new RegraNegocioException(String.format("A categoria de codigo %s não existe no cadastro", codigoCategoria));
 		}
 	}
+
 }
