@@ -72,8 +72,7 @@ public class CategoriaControlador {
 	
 	@ApiOperation(value = "Deletar",nickname = "deleteCategoria")
 	@DeleteMapping("/{codigo}")
-	@CrossOrigin(origins = "http://localhost:4200")
-	//@ResponseStatus(HttpStatus.NO_CONTENT)
+	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long codigo) {
 		categoriaServico.deletar(codigo);
 	}
