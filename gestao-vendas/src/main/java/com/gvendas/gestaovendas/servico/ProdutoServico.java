@@ -51,10 +51,10 @@ public class ProdutoServico {
 	}
 
 	
-	private Produto validarProdutoExiste(Long codigo) {
+	protected Produto validarProdutoExiste(Long codigo) {
 		Optional<Produto> produto = buscarPorCodigo(codigo);
 		if(produto.isEmpty()) {
-			throw new EmptyResultDataAccessException(1);
+			throw new RegraNegocioException(String.format("Produto de codigo %s não encontrado",codigo));
 		}
 		return produto.get();
 	}
