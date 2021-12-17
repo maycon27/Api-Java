@@ -37,6 +37,13 @@ public class Venda {
 
 	}
 	
+	public Venda(Long codigo,LocalDate data, Cliente cliente, Vendedor vendedor) {
+		this.codigo = codigo;
+		this.data = data;
+		this.cliente = cliente;
+		this.vendedor = vendedor;
+		
+	}
 	public Venda(LocalDate data, Cliente cliente, Vendedor vendedor) {
 		this.data = data;
 		this.cliente = cliente;
