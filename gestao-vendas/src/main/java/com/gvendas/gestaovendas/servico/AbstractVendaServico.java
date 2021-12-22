@@ -8,6 +8,7 @@ import com.gvendas.gestaovendas.dto.venda.ClienteVendaResponseDTO;
 import com.gvendas.gestaovendas.dto.venda.ItemVendaRequestDTO;
 import com.gvendas.gestaovendas.dto.venda.ItemVendaResponseDTO;
 import com.gvendas.gestaovendas.dto.venda.VendaResponseDTO;
+import com.gvendas.gestaovendas.dto.venda.VendaVendedorResponseDTO;
 import com.gvendas.gestaovendas.entidades.ItemVenda;
 import com.gvendas.gestaovendas.entidades.Produto;
 import com.gvendas.gestaovendas.entidades.Venda;
@@ -21,11 +22,11 @@ public abstract class AbstractVendaServico {
 		return new VendaResponseDTO(venda.getCodigo(), venda.getData(), itensVendaResponseDTO, venda.getVendedor().getNome());
 		
 	}
-	protected VendaResponseDTO criandoVendaVendedorResponseDTO(Venda venda,  List<ItemVenda> itensVendaList) {
+	protected VendaVendedorResponseDTO criandoVendaVendedorResponseDTO(Venda venda,  List<ItemVenda> itensVendaList) {
 		List<ItemVendaResponseDTO> itensVendaResponseDTO = itensVendaList
 				.stream().map(this::criandoItemVendaResponseDTO).collect(Collectors.toList());
 		
-		return new VendaResponseDTO(venda.getCodigo(), venda.getData(), itensVendaResponseDTO, venda.getCliente().getNome());
+		return new VendaVendedorResponseDTO(venda.getCodigo(), venda.getData(),venda.getCliente().getNome(), itensVendaResponseDTO);
 		
 	}
 	

@@ -6,8 +6,8 @@ import java.util.List;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel("Venda Cliente retorno DTO")
-public class VendaResponseDTO {
+@ApiModel("Venda Vendedor retorno DTO")
+public class VendaVendedorResponseDTO {
 	
 	@ApiModelProperty(value = "Codigo")
 	private Long codigo;
@@ -18,17 +18,17 @@ public class VendaResponseDTO {
 	@ApiModelProperty(value = "Itens da venda")
 	private List<ItemVendaResponseDTO> ItemVendaResponseDTO; 
 	
-	@ApiModelProperty(value = "Nome do Vendedor")
-	private String nomeVendedor;
 	
+	@ApiModelProperty(value = "Nome do Cliente")
+	private String nomeCliente;
 
-
-	public VendaResponseDTO(Long codigo, LocalDate data,
-			List<ItemVendaResponseDTO> itemVendaResponseDTO, String nomeVendedor) {
+	
+	public VendaVendedorResponseDTO(Long codigo, LocalDate data, String nomeCliente,
+			List<ItemVendaResponseDTO> itemVendaResponseDTO) {
 		this.codigo = codigo;
 		this.data = data;
 		ItemVendaResponseDTO = itemVendaResponseDTO;
-		this.nomeVendedor = nomeVendedor;
+		this.nomeCliente = nomeCliente;
 	}
 	
 	
@@ -62,15 +62,16 @@ public class VendaResponseDTO {
 	}
 
 
-	public String getNomeVendedor() {
-		return nomeVendedor;
+	public String getNomeCliente() {
+		return nomeCliente;
+	}
+
+	public void setNomeCliente(String nomeCliente) {
+		this.nomeCliente = nomeCliente;
 	}
 
 
-	public void setNomeVendedor(String nomeVendedor) {
-		this.nomeVendedor = nomeVendedor;
-	}	
 	
 
-	
+
 }

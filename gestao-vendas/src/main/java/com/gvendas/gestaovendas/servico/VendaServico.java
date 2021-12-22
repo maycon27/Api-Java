@@ -13,6 +13,7 @@ import com.gvendas.gestaovendas.dto.venda.ClienteVendaResponseDTO;
 import com.gvendas.gestaovendas.dto.venda.ItemVendaRequestDTO;
 import com.gvendas.gestaovendas.dto.venda.VendaRequestDTO;
 import com.gvendas.gestaovendas.dto.venda.VendaResponseDTO;
+import com.gvendas.gestaovendas.dto.venda.VendaVendedorResponseDTO;
 import com.gvendas.gestaovendas.dto.venda.VendedorVendaResponseDTO;
 import com.gvendas.gestaovendas.entidades.Cliente;
 import com.gvendas.gestaovendas.entidades.ItemVenda;
@@ -41,7 +42,7 @@ public class VendaServico extends AbstractVendaServico {
 		this.itemVendaRepositorio = itemVendaRepositorio;
 		this.produtoServico = produtoServico;
 	}
-
+	
 	public ClienteVendaResponseDTO listarVendaPorCliente(Long codigoCliente) {
 		Cliente cliente = validarClienteVendaExiste(codigoCliente);
 		List<VendaResponseDTO> vendaResponseDtoList = vendaRepositorio.findByClienteCodigo(codigoCliente).stream()
@@ -53,10 +54,11 @@ public class VendaServico extends AbstractVendaServico {
 
 	public VendedorVendaResponseDTO listarVendaPorVendedor(Long codigoVendedor) {
 		Vendedor vendedor = validarVendedorVendaExiste(codigoVendedor);
-		List<VendaResponseDTO> vendaVendedorResponseDtoList = vendaRepositorio.findByVendedorCodigo(codigoVendedor)
-				.stream().map(venda -> criandoVendaVendedorResponseDTO(venda, itemVendaRepositorio.findByVendaCodigo(venda.getCodigo()))).collect(Collectors.toList());
-
-		return new VendedorVendaResponseDTO(vendedor.getNome(), vendaVendedorResponseDtoList);
+		List<VendaVendedorResponseDTO> vendaList = vendaRepositorio.findByVendedorCodigo(codigoVendedor).stream()
+				.map(venda -> criandoVendaVendedorResponseDTO(venda, 
+						itemVendaRepositorio.findByVendaCodigo(venda.getCodigo()))).collect(Collectors.toList());
+		
+		return new VendedorVendaResponseDTO(vendedor.getNome(), vendaList);
 	}
 
 	public ClienteVendaResponseDTO listarVendaPorCodigo(Long codigoVenda) {

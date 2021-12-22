@@ -18,7 +18,7 @@ public class ClienteVendaResponseDTO {
 		this.nome = nome;
 		this.vendaResponseDTO = vendaResponseDTO;
 	}
-
+	
 	public String getNome() {
 		return nome;
 	}
