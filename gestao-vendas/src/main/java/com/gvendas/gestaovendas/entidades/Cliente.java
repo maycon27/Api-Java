@@ -49,6 +49,11 @@ public class Cliente {
 		this.endereco = endereco;
 	}
 
+	public Cliente(Long codigo) {
+		this.codigo = codigo;
+
+	}
+
 	public Long getCodigo() {
 		return codigo;
 	}

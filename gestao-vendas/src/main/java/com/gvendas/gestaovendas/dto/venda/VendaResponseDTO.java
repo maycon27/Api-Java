@@ -14,19 +14,24 @@ public class VendaResponseDTO {
 	
 	@ApiModelProperty(value = "Data")
 	private LocalDate data;
-	
+
+	@ApiModelProperty(value = "Data")
+	private Boolean ativo;
+
 	@ApiModelProperty(value = "Itens da venda")
 	private List<ItemVendaResponseDTO> ItemVendaResponseDTO; 
 	
 	@ApiModelProperty(value = "Nome do Vendedor")
 	private String nomeVendedor;
-	
 
 
-	public VendaResponseDTO(Long codigo, LocalDate data,
+
+
+	public VendaResponseDTO(Long codigo, LocalDate data, Boolean ativo,
 			List<ItemVendaResponseDTO> itemVendaResponseDTO, String nomeVendedor) {
 		this.codigo = codigo;
 		this.data = data;
+		this.ativo = ativo;
 		ItemVendaResponseDTO = itemVendaResponseDTO;
 		this.nomeVendedor = nomeVendedor;
 	}
@@ -51,6 +56,13 @@ public class VendaResponseDTO {
 		this.data = data;
 	}
 
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
 
 	public List<ItemVendaResponseDTO> getItemVendaResponseDTO() {
 		return ItemVendaResponseDTO;
@@ -69,8 +81,8 @@ public class VendaResponseDTO {
 
 	public void setNomeVendedor(String nomeVendedor) {
 		this.nomeVendedor = nomeVendedor;
-	}	
-	
+	}
 
-	
+
+
 }

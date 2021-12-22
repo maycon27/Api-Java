@@ -2,6 +2,7 @@ package com.gvendas.gestaovendas.controlador;
 
 import javax.validation.Valid;
 
+import com.gvendas.gestaovendas.dto.venda.VendaResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,9 @@ import com.gvendas.gestaovendas.servico.VendaServico;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Api(tags = "Venda")
 @RestController
 @RequestMapping("/venda")
@@ -30,17 +34,11 @@ public class VendaContralador {
 
 	@Autowired
 	private VendaServico vendaServico;
-	
-	@ApiOperation(value = "Listar vendas por cliente", nickname = "ListarVendaspPorCliente")
-	@GetMapping("/cliente/{codigoCliente}") 
-	public ResponseEntity<ClienteVendaResponseDTO> listarVendaPorCliente(@PathVariable Long codigoCliente){
-		return ResponseEntity.ok(vendaServico.listarVendaPorCliente(codigoCliente));
-	}
-	
-	@ApiOperation(value = "Listar vendas por vendedor", nickname = "ListarVendaspPorVendedor")
-	@GetMapping("/vendedor/{codigoVendedor}") 
-	public ResponseEntity<VendedorVendaResponseDTO> listarVendaPorVendedor(@PathVariable Long codigoVendedor){
-		return ResponseEntity.ok(vendaServico.listarVendaPorVendedor(codigoVendedor));
+
+	@ApiOperation(value = "Listar vendas", nickname = "ListarVendas")
+	@GetMapping
+	public List<VendaResponseDTO> listarTodos(){
+		return vendaServico.listarTodos();
 	}
 	
 	@ApiOperation(value = "Listar vendas por codigo", nickname = "ListarVendaspPorCodigo")

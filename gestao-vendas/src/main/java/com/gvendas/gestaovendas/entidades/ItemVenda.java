@@ -41,7 +41,6 @@ public class ItemVenda {
 	@ManyToOne
 	@JoinColumn(name = "codigo_venda", referencedColumnName = "codigo")
 	private Venda venda;
-
 	
 	
 	public ItemVenda() {

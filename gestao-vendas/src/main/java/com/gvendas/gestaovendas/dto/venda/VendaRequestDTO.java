@@ -15,7 +15,11 @@ public class VendaRequestDTO {
 	@ApiModelProperty(value = "Data")
 	@NotNull(message = "Data")
 	private LocalDate data;
-	
+
+	@NotNull(message = "Ativo")
+	@ApiModelProperty(value = "Ativo")
+	private Boolean ativo;
+
 	@ApiModelProperty(value = "Itens")
 	@NotNull(message = "Itens")
 	@Valid
@@ -35,6 +39,14 @@ public class VendaRequestDTO {
 
 	public void setData(LocalDate data) {
 		this.data = data;
+	}
+
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	public List<ItemVendaRequestDTO> getItensVendaDto() {

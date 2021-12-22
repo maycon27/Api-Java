@@ -1,16 +1,12 @@
 package com.gvendas.gestaovendas.entidades;
 
+import com.gvendas.gestaovendas.dto.venda.ItemVendaRequestDTO;
+
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "venda")
@@ -24,6 +20,9 @@ public class Venda {
 	@Column (name = "data")
 	private LocalDate data;
 
+	@Column(name = "ativo")
+	private Boolean ativo;
+
 	@ManyToOne
 	@JoinColumn(name = "codigo_cliente", referencedColumnName = "codigo")
 	private Cliente cliente;
@@ -32,22 +31,45 @@ public class Venda {
 	@JoinColumn(name = "codigo_vendedor", referencedColumnName = "codigo")
 	private Vendedor vendedor;
 
+
+	@OneToMany(mappedBy = "venda", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+	private List<ItemVenda> itens;
+
 	
 	public Venda() {
 
 	}
 	
-	public Venda(Long codigo,LocalDate data, Cliente cliente, Vendedor vendedor) {
+	public Venda(Long codigo,LocalDate data, Boolean ativo, Cliente cliente, Vendedor vendedor) {
 		this.codigo = codigo;
 		this.data = data;
+		this.ativo = ativo;
 		this.cliente = cliente;
 		this.vendedor = vendedor;
 		
 	}
-	public Venda(LocalDate data, Cliente cliente, Vendedor vendedor) {
+	public Venda(LocalDate data,  Boolean ativo, Cliente cliente, Vendedor vendedor) {
 		this.data = data;
+		this.ativo = ativo;
 		this.cliente = cliente;
 		this.vendedor = vendedor;
+	}
+	public Venda(LocalDate data,Boolean ativo, Cliente cliente, Vendedor vendedor,List<ItemVenda> itens ) {
+		this.data = data;
+		this.ativo = ativo;
+		this.cliente = cliente;
+		this.vendedor = vendedor;
+		this.itens = itens;
+	}
+
+	public Venda(Long codigo,LocalDate data, Boolean ativo, Cliente cliente, Vendedor vendedor,List<ItemVenda> itens) {
+		this.codigo = codigo;
+		this.data = data;
+		this.ativo = ativo;
+		this.cliente = cliente;
+		this.vendedor = vendedor;
+		this.itens = itens;
+
 	}
 
 	public Long getCodigo() {
@@ -66,6 +88,14 @@ public class Venda {
 		this.data = data;
 	}
 
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
+
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -80,6 +110,14 @@ public class Venda {
 
 	public void setVendedor(Vendedor vendedor) {
 		this.vendedor = vendedor;
+	}
+
+	public List<ItemVenda> getItens() {
+		return itens;
+	}
+
+	public void setItens(List<ItemVenda> itens) {
+		this.itens = itens;
 	}
 
 	@Override

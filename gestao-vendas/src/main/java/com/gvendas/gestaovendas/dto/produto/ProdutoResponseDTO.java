@@ -107,7 +107,5 @@ public class ProdutoResponseDTO {
 		this.categoria = categoria;
 	}
 	
-	
-	
 
 }

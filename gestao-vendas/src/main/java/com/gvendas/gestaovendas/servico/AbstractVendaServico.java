@@ -15,19 +15,13 @@ import com.gvendas.gestaovendas.entidades.Venda;
 
 public abstract class AbstractVendaServico {
 
-	protected VendaResponseDTO criandoVendaResponseDTO(Venda venda, List<ItemVenda> itensVendaList) {
-		List<ItemVendaResponseDTO> itensVendaResponseDTO = itensVendaList
+
+	protected VendaResponseDTO criandoVendaResponseDTO(Venda venda) {
+		List<ItemVendaResponseDTO> itensVendaResponseDTO = venda.getItens()
 				.stream().map(this::criandoItemVendaResponseDTO).collect(Collectors.toList());
-		
-		return new VendaResponseDTO(venda.getCodigo(), venda.getData(), itensVendaResponseDTO, venda.getVendedor().getNome());
-		
-	}
-	protected VendaVendedorResponseDTO criandoVendaVendedorResponseDTO(Venda venda,  List<ItemVenda> itensVendaList) {
-		List<ItemVendaResponseDTO> itensVendaResponseDTO = itensVendaList
-				.stream().map(this::criandoItemVendaResponseDTO).collect(Collectors.toList());
-		
-		return new VendaVendedorResponseDTO(venda.getCodigo(), venda.getData(),venda.getCliente().getNome(), itensVendaResponseDTO);
-		
+
+		return new VendaResponseDTO(venda.getCodigo(), venda.getData(),venda.getAtivo(), itensVendaResponseDTO, venda.getVendedor().getNome());
+
 	}
 	
 	protected ItemVendaResponseDTO criandoItemVendaResponseDTO(ItemVenda itemVenda) {
@@ -36,11 +30,10 @@ public abstract class AbstractVendaServico {
 				itemVenda.getProduto().getDescricao());
 	}
 	
-	protected ClienteVendaResponseDTO retornandoClienteVendaResponseDTO(Venda venda, List<ItemVenda> itensVendaList) {
-		return new ClienteVendaResponseDTO(venda.getCliente().getNome(),Arrays.asList(
-				criandoVendaResponseDTO(venda,itensVendaList )));
+	protected ClienteVendaResponseDTO retornandoClienteVendaResponseDTO(Venda venda) {
+		return new ClienteVendaResponseDTO(venda.getCliente().getNome(), List.of(
+				criandoVendaResponseDTO(venda)));
 	}
-	
 	protected ItemVenda criandoItemVenda(ItemVendaRequestDTO itemVendaDto, Venda venda) {
 		return new ItemVenda(itemVendaDto.getQuantidade(),itemVendaDto.getPrecoVendido(),itemVendaDto.getPagamentoVista(),
 				itemVendaDto.getPagamentoPrazo(),new Produto(itemVendaDto.getCodigoProduto()),venda);
