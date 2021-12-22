@@ -19,7 +19,7 @@ public class Vendedor {
 	private Long codigo;
 
 	@Column(name = "nome")
-	 private String nome;
+	private String nome;
 
 	public Vendedor() {
 		
