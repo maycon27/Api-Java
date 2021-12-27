@@ -18,7 +18,7 @@ public class CategoriaRequestDTO {
 	@ApiModelProperty(value = "Nome")
 	@NotBlank(message = "Nome")
 	@Length(min = 3 , max = 50, message = "Nome")
-	private String nome;
+	 private String nome;
 
 	
 	public Categoria converterParaEntidade() {
