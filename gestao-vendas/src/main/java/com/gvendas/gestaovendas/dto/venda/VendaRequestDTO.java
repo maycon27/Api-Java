@@ -8,8 +8,10 @@ import javax.validation.constraints.NotNull;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 @ApiModel("Venda requisição DTO")
+@Data
 public class VendaRequestDTO {
 	
 	@ApiModelProperty(value = "Data")
@@ -32,47 +34,5 @@ public class VendaRequestDTO {
 	@ApiModelProperty(value = "Codigo Vendedor")
 	@NotNull(message = "Codigo Vendedor")
 	private Long codigoVendedor;
-
-	public LocalDate getData() {
-		return data;
-	}
-
-	public void setData(LocalDate data) {
-		this.data = data;
-	}
-
-	public Boolean getAtivo() {
-		return ativo;
-	}
-
-	public void setAtivo(Boolean ativo) {
-		this.ativo = ativo;
-	}
-
-	public List<ItemVendaRequestDTO> getItensVendaDto() {
-		return ItensVendaDto;
-	}
-
-	public void setItensVendaDto(List<ItemVendaRequestDTO> itensVendaDto) {
-		ItensVendaDto = itensVendaDto;
-	}
-
-	public Long getCodigoCliente() {
-		return codigoCliente;
-	}
-
-	public void setCodigoCliente(Long codigoCliente) {
-		this.codigoCliente = codigoCliente;
-	}
-
-	public Long getCodigoVendedor() {
-		return codigoVendedor;
-	}
-
-	public void setCodigoVendedor(Long codigoVendedor) {
-		this.codigoVendedor = codigoVendedor;
-	}
-	
-	
 
 }

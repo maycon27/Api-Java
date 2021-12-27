@@ -4,8 +4,10 @@ import com.gvendas.gestaovendas.entidades.Cliente;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 @ApiModel("Cliente retorno DTO")
+@Data
 public class ClienteResponseDTO {
 
 	@ApiModelProperty(value = "Código")
@@ -38,46 +40,6 @@ public class ClienteResponseDTO {
 				cliente.getEndereco().getEstado());
 		return new ClienteResponseDTO(cliente.getCodigo(), cliente.getNome(), cliente.getTelefone(), cliente.getAtivo(),
 				enderecoResponseDTO);
-	}
-
-	public EnderecoResponseDTO getEnderecoDto() {
-		return enderecoDto;
-	}
-
-	public void setEnderecoDto(EnderecoResponseDTO enderecoDto) {
-		this.enderecoDto = enderecoDto;
-	}
-
-	public Long getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
-	public Boolean getAtivo() {
-		return ativo;
-	}
-
-	public void setAtivo(Boolean ativo) {
-		this.ativo = ativo;
 	}
 
 }

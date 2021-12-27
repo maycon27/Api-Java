@@ -4,8 +4,10 @@ import com.gvendas.gestaovendas.entidades.Vendedor;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 @ApiModel("Vendedor retorno DTO")
+@Data
 public class VendedorResponseDTO {
 
 	@ApiModelProperty(value = "Código")
@@ -23,22 +25,5 @@ public class VendedorResponseDTO {
 	public static VendedorResponseDTO converterParaVendedorDTO(Vendedor vendedor) {
 		return new VendedorResponseDTO(vendedor.getCodigo(),vendedor.getNome());
 	}
-
-	public Long getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	
 	
 }

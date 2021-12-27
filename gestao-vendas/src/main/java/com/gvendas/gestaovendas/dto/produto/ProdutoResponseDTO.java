@@ -7,8 +7,10 @@ import com.gvendas.gestaovendas.entidades.Produto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 @ApiModel(value = "Produto retorno DTO")
+@Data
 public class ProdutoResponseDTO {
 
 	@ApiModelProperty(value = "Código")
@@ -51,61 +53,5 @@ public class ProdutoResponseDTO {
 				CategoriaResponseDTO.converterParaCategoriaDTO(produto.getCategoria()));
 	}
 
-	public Long getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public Integer getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(Integer quantidade) {
-		this.quantidade = quantidade;
-	}
-
-	public BigDecimal getPrecoCusto() {
-		return precoCusto;
-	}
-
-	public void setPrecoCusto(BigDecimal precoCusto) {
-		this.precoCusto = precoCusto;
-	}
-
-	public BigDecimal getPrecoVenda() {
-		return precoVenda;
-	}
-
-	public void setPrecoVenda(BigDecimal precoVenda) {
-		this.precoVenda = precoVenda;
-	}
-
-	public String getObservacao() {
-		return observacao;
-	}
-
-	public void setObservacao(String observacao) {
-		this.observacao = observacao;
-	}
-
-	public CategoriaResponseDTO getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(CategoriaResponseDTO categoria) {
-		this.categoria = categoria;
-	}
-	
 
 }

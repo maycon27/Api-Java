@@ -7,8 +7,10 @@ import javax.validation.constraints.NotNull;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 @ApiModel("Itens da venda requisição DTO")
+@Data
 public class ItemVendaRequestDTO {
 
 	@ApiModelProperty(value = "Codigo Produto")
@@ -32,45 +34,4 @@ public class ItemVendaRequestDTO {
 	@NotNull(message = "Pagamento a prazo")
 	private BigDecimal pagamentoPrazo;
 
-	public Long getCodigoProduto() {
-		return codigoProduto;
-	}
-
-	public void setCodigoProduto(Long codigoProduto) {
-		this.codigoProduto = codigoProduto;
-	}
-
-	public Integer getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(Integer quantidade) {
-		this.quantidade = quantidade;
-	}
-
-	public BigDecimal getPrecoVendido() {
-		return precoVendido;
-	}
-
-	public void setPrecoVendido(BigDecimal precoVendido) {
-		this.precoVendido = precoVendido;
-	}
-
-	public BigDecimal getPagamentoVista() {
-		return pagamentoVista;
-	}
-
-	public void setPagamentoVista(BigDecimal pagamentoVista) {
-		this.pagamentoVista = pagamentoVista;
-	}
-
-	public BigDecimal getPagamentoPrazo() {
-		return pagamentoPrazo;
-	}
-
-	public void setPagamentoPrazo(BigDecimal pagamentoPrazo) {
-		this.pagamentoPrazo = pagamentoPrazo;
-	}
-	
-	
 }
