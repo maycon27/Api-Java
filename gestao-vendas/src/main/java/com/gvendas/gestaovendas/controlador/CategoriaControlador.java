@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,13 +38,14 @@ public class CategoriaControlador {
 
 	@Autowired 
 	private CategoriaServico categoriaServico;
-	
+
+
 	@ApiOperation(value = "Listar",nickname = "listarTodas")
 	@GetMapping
 	//@CrossOrigin(origins = "http://localhost:4200")
 	public List<CategoriaResponseDTO> listarTodas(){
-		 return categoriaServico.listarTodas().stream().map(categoria -> CategoriaResponseDTO.converterParaCategoriaDTO(categoria))
-				 .collect(Collectors.toList());
+		return categoriaServico.listarTodas().stream().map(categoria -> CategoriaResponseDTO.converterParaCategoriaDTO(categoria))
+				.collect(Collectors.toList());
 	}
 	
 	@ApiOperation(value = "Listar por código",nickname = "buscarPorId")

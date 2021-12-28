@@ -4,8 +4,10 @@ import java.util.List;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 @ApiModel("Cliente da venda retorno DTO")
+@Data
 public class ClienteVendaResponseDTO {
 	
 	@ApiModelProperty(value = "Nome Cliente")
@@ -18,24 +20,6 @@ public class ClienteVendaResponseDTO {
 		this.nome = nome;
 		this.vendaResponseDTO = vendaResponseDTO;
 	}
-	
-	public String getNome() {
-		return nome;
-	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public List<VendaResponseDTO> getVendaResponseDTO() {
-		return vendaResponseDTO;
-	}
-
-	public void setVendaResponseDTO(List<VendaResponseDTO> vendaResponseDTO) {
-		this.vendaResponseDTO = vendaResponseDTO;
-	}
-	
-	
-	
 
 }

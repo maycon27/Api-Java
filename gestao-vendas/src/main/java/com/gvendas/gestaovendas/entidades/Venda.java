@@ -1,6 +1,7 @@
 package com.gvendas.gestaovendas.entidades;
 
 import com.gvendas.gestaovendas.dto.venda.ItemVendaRequestDTO;
+import lombok.Data;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -10,6 +11,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "venda")
+@Data
 public class Venda {
 
 	@Id
@@ -72,71 +74,4 @@ public class Venda {
 
 	}
 
-	public Long getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
-	}
-
-	public LocalDate getData() {
-		return data;
-	}
-
-	public void setData(LocalDate data) {
-		this.data = data;
-	}
-
-	public Boolean getAtivo() {
-		return ativo;
-	}
-
-	public void setAtivo(Boolean ativo) {
-		this.ativo = ativo;
-	}
-
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
-	public Vendedor getVendedor() {
-		return vendedor;
-	}
-
-	public void setVendedor(Vendedor vendedor) {
-		this.vendedor = vendedor;
-	}
-
-	public List<ItemVenda> getItens() {
-		return itens;
-	}
-
-	public void setItens(List<ItemVenda> itens) {
-		this.itens = itens;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(cliente, codigo, data, vendedor);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (!(obj instanceof Venda)) {
-			return false;
-		}
-		Venda other = (Venda) obj;
-		return Objects.equals(cliente, other.cliente) && Objects.equals(codigo, other.codigo)
-				&& Objects.equals(data, other.data) && Objects.equals(vendedor, other.vendedor);
-	}
-	
-	
 }
