@@ -3,7 +3,6 @@ package com.gvendas.gestaovendas.dto.produto;
 import java.math.BigDecimal;
 
 import com.gvendas.gestaovendas.dto.categoria.CategoriaResponseDTO;
-import com.gvendas.gestaovendas.entidades.Categoria;
 import com.gvendas.gestaovendas.entidades.Produto;
 
 import io.swagger.annotations.ApiModel;

@@ -1,6 +1,5 @@
 package com.gvendas.gestaovendas.dto.cliente;
 
-
 import com.gvendas.gestaovendas.entidades.Cliente;
 
 import io.swagger.annotations.ApiModel;

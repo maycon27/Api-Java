@@ -7,5 +7,5 @@ import com.gvendas.gestaovendas.entidades.Vendedor;
 
 public interface VendedorRepositorio extends JpaRepository<Vendedor, Long> {
 
-	Vendedor findByNome(String descricao);
+	 Vendedor findByNome(String descricao);
 }
