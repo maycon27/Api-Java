@@ -43,7 +43,7 @@ public class VendaServico extends AbstractVendaServico {
 
 	public List<VendaResponseDTO> listarTodos(){
 		return vendaRepositorio.findAll().stream().map(this::criandoVendaResponseDTO)
-				.collect(Collectors.toList());
+			.collect(Collectors.toList());
 	}
 
 	public VendaResponseDTO listarVendaPorCodigo(Long codigoVenda) {
