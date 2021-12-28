@@ -13,7 +13,7 @@
 	<artifactId>gestao-vendas</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>gestao-vendas</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Gestão de vendas</description>
 	<properties>
 		<java.version>11</java.version>
 		<org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
