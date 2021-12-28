@@ -37,5 +37,10 @@ public class EnderecoResponseDTO {
 		this.cep = cep;
 		this.cidade = cidade;
 		this.estado = estado;
+<<<<<<< HEAD
     }
+=======
+	}
+
+>>>>>>> 2cbab3cd0f1a9e7cab87eecc48895741cf37d9c9
 }

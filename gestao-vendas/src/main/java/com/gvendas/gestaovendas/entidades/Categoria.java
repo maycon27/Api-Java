@@ -43,5 +43,15 @@ public class Categoria {
 		this.codigo = codigo;
 		this.nome = nome;
 	}
+<<<<<<< HEAD
+=======
+	public Long getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
+	}
+>>>>>>> 2cbab3cd0f1a9e7cab87eecc48895741cf37d9c9
 
 }

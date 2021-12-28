@@ -6,12 +6,18 @@ import com.gvendas.gestaovendas.entidades.Cliente;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+<<<<<<< HEAD
 import lombok.Getter;
 import lombok.Setter;
 
 @ApiModel("Cliente retorno DTO")
 @Getter
 @Setter
+=======
+
+@ApiModel("Cliente retorno DTO")
+@Data
+>>>>>>> 2cbab3cd0f1a9e7cab87eecc48895741cf37d9c9
 public class ClienteResponseDTO {
 
 	@ApiModelProperty(value = "Código")
@@ -45,4 +51,8 @@ public class ClienteResponseDTO {
 		return new ClienteResponseDTO(cliente.getCodigo(), cliente.getNome(), cliente.getTelefone(), cliente.getAtivo(),
 				enderecoResponseDTO);
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2cbab3cd0f1a9e7cab87eecc48895741cf37d9c9
 }

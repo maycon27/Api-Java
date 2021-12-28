@@ -9,6 +9,7 @@ import com.gvendas.gestaovendas.entidades.Produto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+<<<<<<< HEAD
 import lombok.Getter;
 import lombok.Setter;
 import org.modelmapper.ModelMapper;
@@ -16,6 +17,11 @@ import org.modelmapper.ModelMapper;
 @ApiModel(value = "Produto retorno DTO")
 @Setter
 @Getter
+=======
+
+@ApiModel(value = "Produto retorno DTO")
+@Data
+>>>>>>> 2cbab3cd0f1a9e7cab87eecc48895741cf37d9c9
 public class ProdutoResponseDTO {
 
 	@ApiModelProperty(value = "Código")
@@ -57,9 +63,14 @@ public class ProdutoResponseDTO {
 				produto.getPrecoCusto(), produto.getPrecoVenda(), produto.getObservacao(),
 				CategoriaResponseDTO.converterParaCategoriaDTO(produto.getCategoria()));
 	}
+<<<<<<< HEAD
 */
 public static ProdutoResponseDTO converterParaProdutoDTO(Produto produto) {
 	ModelMapper modelMapper = new ModelMapper();
 	return modelMapper.map(produto, ProdutoResponseDTO.class);
 }
+=======
+
+
+>>>>>>> 2cbab3cd0f1a9e7cab87eecc48895741cf37d9c9
 }

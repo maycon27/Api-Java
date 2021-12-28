@@ -116,6 +116,7 @@
 			<version>1.18.22</version>
 			<scope>provided</scope>
 		</dependency>
+<<<<<<< HEAD
 
 		<dependency>
 			<groupId>org.mapstruct</groupId>
@@ -125,6 +126,8 @@
 			<optional>true</optional>
 		</dependency>
 
+=======
+>>>>>>> 2cbab3cd0f1a9e7cab87eecc48895741cf37d9c9
 
 	</dependencies>
 

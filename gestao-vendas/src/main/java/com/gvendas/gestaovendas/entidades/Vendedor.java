@@ -40,5 +40,9 @@ public class Vendedor {
 		this.codigo = codigo;
 		this.nome = nome;
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 2cbab3cd0f1a9e7cab87eecc48895741cf37d9c9
 }
