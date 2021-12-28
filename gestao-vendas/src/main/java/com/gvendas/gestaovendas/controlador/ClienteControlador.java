@@ -7,10 +7,10 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 
+import com.gvendas.gestaovendas.assembler.ClienteMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,11 +37,14 @@ public class ClienteControlador {
 	@Autowired
 	private ClienteServico clienteServico;
 
+	@Autowired
+	private ClienteMapper mapper;
+
 	@ApiOperation(value = "Listar", nickname = "listarTodosClientes")
 	@GetMapping
 	//@CrossOrigin(origins = "http://localhost:4200")
 	public List<ClienteResponseDTO> listarTodos() {
-		return clienteServico.listarTodos().stream().map(cliente -> ClienteResponseDTO.converterParaClienteDTO(cliente))
+		return clienteServico.listarTodos().stream().map(cliente -> mapper.toModel(cliente))
 				.collect(Collectors.toList());
 	}
 
@@ -50,8 +53,7 @@ public class ClienteControlador {
 	//@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<ClienteResponseDTO> buscarPorId(@PathVariable Long codigo) {
 		Optional<Cliente> cliente = clienteServico.buscarPorCodigo(codigo);
-		return cliente.isPresent() ? ResponseEntity.ok(ClienteResponseDTO.converterParaClienteDTO(cliente.get()))
-				: ResponseEntity.notFound().build();
+		return cliente.map(value -> ResponseEntity.ok(ClienteResponseDTO.converterParaClienteDTO(value))).orElseGet(() -> ResponseEntity.notFound().build());
 	}
 
 	@ApiOperation(value = "Salvar", nickname = "salvarCliente")

@@ -29,7 +29,10 @@ public class EnderecoResponseDTO {
 	@ApiModelProperty(value = "Estado")
 	private String estado;
 
-    public EnderecoResponseDTO(String logradouro, Integer numero, String complemento, String bairro, String cep, String cidade, String estado) {
+	public EnderecoResponseDTO() {
+	}
+
+	public EnderecoResponseDTO(String logradouro, Integer numero, String complemento, String bairro, String cep, String cidade, String estado) {
 		this.logradouro = logradouro;
 		this.numero = numero;
 		this.complemento = complemento;
