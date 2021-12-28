@@ -5,8 +5,10 @@ import java.util.List;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
-@ApiModel("Venda Cliente retorno DTO")
+@ApiModel("Venda retorno DTO")
+@Data
 public class VendaResponseDTO {
 	
 	@ApiModelProperty(value = "Codigo")
@@ -24,65 +26,21 @@ public class VendaResponseDTO {
 	@ApiModelProperty(value = "Nome do Vendedor")
 	private String nomeVendedor;
 
+	@ApiModelProperty(value = "Nome do Cliente")
+	private String nomeCliente;
+
 
 
 
 	public VendaResponseDTO(Long codigo, LocalDate data, Boolean ativo,
-			List<ItemVendaResponseDTO> itemVendaResponseDTO, String nomeVendedor) {
+			List<ItemVendaResponseDTO> itemVendaResponseDTO, String nomeVendedor,String nomeCliente) {
 		this.codigo = codigo;
 		this.data = data;
 		this.ativo = ativo;
 		ItemVendaResponseDTO = itemVendaResponseDTO;
 		this.nomeVendedor = nomeVendedor;
+		this.nomeCliente = nomeCliente;
 	}
 	
-	
-	public Long getCodigo() {
-		return codigo;
-	}
-
-
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
-	}
-
-
-	public LocalDate getData() {
-		return data;
-	}
-
-
-	public void setData(LocalDate data) {
-		this.data = data;
-	}
-
-	public Boolean getAtivo() {
-		return ativo;
-	}
-
-	public void setAtivo(Boolean ativo) {
-		this.ativo = ativo;
-	}
-
-	public List<ItemVendaResponseDTO> getItemVendaResponseDTO() {
-		return ItemVendaResponseDTO;
-	}
-
-
-	public void setItemVendaResponseDTO(List<ItemVendaResponseDTO> itemVendaResponseDTO) {
-		ItemVendaResponseDTO = itemVendaResponseDTO;
-	}
-
-
-	public String getNomeVendedor() {
-		return nomeVendedor;
-	}
-
-
-	public void setNomeVendedor(String nomeVendedor) {
-		this.nomeVendedor = nomeVendedor;
-	}
-
-
 
 }

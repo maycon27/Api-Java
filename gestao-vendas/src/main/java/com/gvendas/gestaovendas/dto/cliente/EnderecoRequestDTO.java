@@ -6,12 +6,14 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel("Endereço requisição DTO")
+@Data
 public class EnderecoRequestDTO {
 	
 	@NotBlank(message = "Logradouro")
@@ -48,63 +50,5 @@ public class EnderecoRequestDTO {
 	@ApiModelProperty(value = "Estado")
 	private String estado;
 
-	public String getLogradouro() {
-		return logradouro;
-	}
-
-	public void setLogradouro(String logradouro) {
-		this.logradouro = logradouro;
-	}
-
-	public Integer getNumero() {
-		return numero;
-	}
-
-	public void setNumero(Integer numero) {
-		this.numero = numero;
-	}
-
-	public String getComplemento() {
-		return complemento;
-	}
-
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
-	}
-
-	public String getBairro() {
-		return bairro;
-	}
-
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
-
-	public String getCep() {
-		return cep;
-	}
-
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-
-	public String getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-	
-	
-	
 
 }

@@ -20,7 +20,8 @@ public abstract class AbstractVendaServico {
 		List<ItemVendaResponseDTO> itensVendaResponseDTO = venda.getItens()
 				.stream().map(this::criandoItemVendaResponseDTO).collect(Collectors.toList());
 
-		return new VendaResponseDTO(venda.getCodigo(), venda.getData(),venda.getAtivo(), itensVendaResponseDTO, venda.getVendedor().getNome());
+		return new VendaResponseDTO(venda.getCodigo(), venda.getData(),venda.getAtivo(),
+				itensVendaResponseDTO, venda.getVendedor().getNome(), venda.getCliente().getNome());
 
 	}
 	
@@ -31,11 +32,7 @@ public abstract class AbstractVendaServico {
 	}
 	
 	protected ClienteVendaResponseDTO retornandoClienteVendaResponseDTO(Venda venda) {
-		return new ClienteVendaResponseDTO(venda.getCliente().getNome(), List.of(
+		return new ClienteVendaResponseDTO(venda.getCliente().getNome(),List.of(
 				criandoVendaResponseDTO(venda)));
-	}
-	protected ItemVenda criandoItemVenda(ItemVendaRequestDTO itemVendaDto, Venda venda) {
-		return new ItemVenda(itemVendaDto.getQuantidade(),itemVendaDto.getPrecoVendido(),itemVendaDto.getPagamentoVista(),
-				itemVendaDto.getPagamentoPrazo(),new Produto(itemVendaDto.getCodigoProduto()),venda);
 	}
 }

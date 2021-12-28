@@ -35,12 +35,13 @@ public class VendedorControlador {
 
 	@Autowired
 	private VendedorServico vendedorServico;
+
 	
 	@ApiOperation(value = "Listar",nickname = "listarTodas")
 	@GetMapping
 	public List<VendedorResponseDTO> listarTodos(){
-		 return vendedorServico.listarTodos().stream().map(vendedor -> VendedorResponseDTO.converterParaVendedorDTO(vendedor))
-				 .collect(Collectors.toList());
+		return vendedorServico.listarTodos().stream().map(vendedor -> VendedorResponseDTO.converterParaVendedorDTO(vendedor))
+				.collect(Collectors.toList());
 	}
 	
 	@ApiOperation(value = "Listar por código",nickname = "buscarPorId")

@@ -2,6 +2,7 @@ package com.gvendas.gestaovendas.dto.categoria;
 
 import javax.validation.constraints.NotBlank;
 
+import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 import com.gvendas.gestaovendas.entidades.Categoria;
@@ -11,6 +12,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 
 @ApiModel("Categoria requisição DTO")
+@Data
 public class CategoriaRequestDTO {
 	
 	@ApiModelProperty(value = "Nome")
@@ -26,16 +28,6 @@ public class CategoriaRequestDTO {
 	public Categoria converterParaEntidade(Long codigo) {
 		return new Categoria(codigo,nome);
 	}
-	
-	
-	public String getNome() {
-		return nome;
-	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	
-	
 
 }

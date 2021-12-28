@@ -46,9 +46,9 @@ public class VendaServico extends AbstractVendaServico {
 				.collect(Collectors.toList());
 	}
 
-	public ClienteVendaResponseDTO listarVendaPorCodigo(Long codigoVenda) {
+	public VendaResponseDTO listarVendaPorCodigo(Long codigoVenda) {
 		Venda venda = validarVendaExiste(codigoVenda);
-		return retornandoClienteVendaResponseDTO(venda);
+		return criandoVendaResponseDTO(venda);
 	}
 	
 	

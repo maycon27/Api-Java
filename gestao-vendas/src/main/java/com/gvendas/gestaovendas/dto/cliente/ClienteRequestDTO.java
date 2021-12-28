@@ -5,6 +5,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 import com.gvendas.gestaovendas.entidades.Cliente;
@@ -14,6 +15,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel("Cliente requisição DTO")
+@Data
 public class ClienteRequestDTO {
 
 	@NotBlank(message = "Nome")
@@ -47,38 +49,6 @@ public class ClienteRequestDTO {
 				enderecoDto.getComplemento(), enderecoDto.getBairro(), enderecoDto.getCep(), enderecoDto.getCidade(),
 				enderecoDto.getEstado());
 		return new Cliente(nome, telefone, ativo, endereco);
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
-	public Boolean getAtivo() {
-		return ativo;
-	}
-
-	public void setAtivo(Boolean ativo) {
-		this.ativo = ativo;
-	}
-
-	public EnderecoRequestDTO getEnderecoDto() {
-		return enderecoDto;
-	}
-
-	public void setEnderecoDto(EnderecoRequestDTO enderecoDto) {
-		this.enderecoDto = enderecoDto;
 	}
 
 }

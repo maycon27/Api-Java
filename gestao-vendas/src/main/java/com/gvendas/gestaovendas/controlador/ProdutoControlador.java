@@ -36,6 +36,8 @@ public class ProdutoControlador {
 	@Autowired
 	private ProdutoServico produtoServico;
 
+
+
 	@ApiOperation(value = "Listar",nickname = "ListarTodas")
 	@GetMapping
 	//@CrossOrigin(origins = "http://localhost:4200")
@@ -77,5 +79,4 @@ public class ProdutoControlador {
 	public void deletar(@PathVariable Long codigoProduto ) {
 		produtoServico.deletar(codigoProduto);
 	}
-	
 }

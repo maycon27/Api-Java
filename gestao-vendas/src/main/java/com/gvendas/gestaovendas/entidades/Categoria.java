@@ -10,10 +10,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "categoria")
+@Data
 public class Categoria {
 
 	@Id
@@ -38,36 +43,5 @@ public class Categoria {
 		this.codigo = codigo;
 		this.nome = nome;
 	}
-	public Long getCodigo() {
-		return codigo;
-	}
 
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(codigo, nome);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (!(obj instanceof Categoria)) {
-			return false;
-		}
-		Categoria other = (Categoria) obj;
-		return Objects.equals(codigo, other.codigo) && Objects.equals(nome, other.nome);
-	}
 }
