@@ -11,9 +11,8 @@ services:
       - 7080:7080
     depends_on:
       - mysql
-      - jaeger
-      - prometheus
-      - grafana
+    command: ["-c", "/app/wait-for-mysql.sh mysql:3306 && java -jar /app/gestao_vendas.jar"]
+    entrypoint: ["/bin/sh"]
 
   mysql:
     image: mysql:8.0.27
