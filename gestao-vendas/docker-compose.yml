@@ -5,9 +5,9 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile 
+      dockerfile: Dockerfile
     container_name: gestao_venda_app
-    ports: 
+    ports:
       - 7080:7080
     depends_on:
       - mysql
