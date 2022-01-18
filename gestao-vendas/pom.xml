@@ -149,6 +149,15 @@
             <version>0.10.5</version>
             <scope>runtime</scope>
         </dependency>
+        
+           <!-- Firebase Admin -->
+        <dependency>
+            <groupId>com.google.firebase</groupId>
+            <artifactId>firebase-admin</artifactId>
+            <version>6.8.0</version>
+        </dependency>
+        
+        
 
         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
         <dependency>
@@ -158,6 +167,14 @@
         </dependency>
 
     </dependencies>
+    
+    <!-- Google repo -->
+    <repositories>
+        <repository>
+            <id>spring-repo</id>
+            <url>https://maven.google.com/</url>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>
